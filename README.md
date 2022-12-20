@@ -1,17 +1,15 @@
-<!-- cSpell:ignore nvim -->
+# `cmp-mocword`
 
-# `cmp-fish`
+[Mocword](https://github.com/high-moctane/mocword) completion source for [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
 
-[Fish shell](https://fishshell.com) completion source for [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
-
-## Usage
+Forked from [cmp-fish](https://github.com/mtoohey31/cmp-fish).
 
 ```lua
-require("packer").use({ "mtoohey31/cmp-fish", ft = "fish" })
+require("packer").use({ "TODO", ft = {"markdown", "text"} })
 
 cmp.setup({
   sources = cmp.config.sources({
-    { name = 'fish' }
+    { name = 'mocword' }
   })
 })
 ```
