@@ -1,5 +1,4 @@
 -- luacheck: globals vim
-
 local source = {}
 
 local create_job = function(self)
@@ -8,10 +7,15 @@ local create_job = function(self)
     on_stdout = function(_, data)
       local complete_items = {}
       for _, line in ipairs(data) do
-        for suggestion in string.gmatch(line, "%S+") do
+        local words = string.gmatch(line, "%S+")
+        local score = 100
+        for suggestion in words do
+          -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#completionItem
+          score = score - 1
           table.insert(complete_items, {
             label = suggestion,
-            kind = 1,  -- text https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/types/lsp.lua
+            kind = 1,
+            score = score,
             --detail = '',
           })
         end

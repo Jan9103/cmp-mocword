@@ -9,12 +9,24 @@ Forked from [cmp-fish](https://github.com/mtoohey31/cmp-fish).
 ```lua
 require("packer").use({ "jan9103/cmp-mocword", ft = {"markdown", "text"} })
 
+local compare = require('cmp.config.compare')
+
 cmp.setup({
+  sorting = {
+    comparators = {
+      compare.score,
+      -- …
+      compare.order,
+    },
+  },
   sources = cmp.config.sources({
-    { name = 'mocword' }
+    { name = 'mocword' },
   })
 })
 ```
+
+| Note | As far as i am aware it is not yet possible to have source specific sorting. If you wan't to have a correct order your top comparator should be `score` or `order`. |
+| --- | --- |
 
 ## Dependencies
 
