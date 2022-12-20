@@ -25,14 +25,12 @@ source.new = function()
   local self = setmetatable({}, {
     __index = source,
   })
-  self.output_buffer = {}
   self.mocword_job = create_job(self)
   return self
 end
 
 source.reset = function(self)
   vim.fn.jobstop(self.mocword_job)
-  self.output_buffer = {}
   self.mocword_job = create_job(self)
 end
 
@@ -49,7 +47,6 @@ source.get_keyword_pattern = function(_)
 end
 
 source.complete = function(self, params, callback)
-  self.output_buffer = {}
   vim.fn.chansend(self.mocword_job, params.context.cursor_before_line .. "\n")
   self.callback = callback
 end
